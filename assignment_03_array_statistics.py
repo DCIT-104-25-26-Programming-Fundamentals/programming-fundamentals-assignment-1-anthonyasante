@@ -38,4 +38,86 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def calculate_sum(numbers):
+    """
+    Calculates the sum of all elements in the list.
+    """
+    total = 0
+    for num in numbers:
+        total += num
+    return total
 
+def calculate_average(numbers):
+    """
+    Calculates the average of the elements in the list.
+    """
+    if not numbers:
+        return 0
+    
+    total = calculate_sum(numbers)
+    return total / len(numbers)
+
+def find_maximum(numbers):
+    """
+    Finds the maximum value in the list without using max().
+    """
+    if not numbers:
+        return None
+        
+    maximum = numbers[0]
+    for num in numbers:
+        if num > maximum:
+            maximum = num
+    return maximum
+
+def find_minimum(numbers):
+    """
+    Finds the minimum value in the list without using min().
+    """
+    if not numbers:
+        return None
+        
+    minimum = numbers[0]
+    for num in numbers:
+        if num < minimum:
+            minimum = num
+    return minimum
+
+def main():
+    """
+    Handles user input, populates the list, and prints statistical results.
+    """
+    try:
+        n_input = input("How many numbers? ")
+        n = int(n_input)
+        
+        if n <= 0:
+            print("Error: The number of items must be a positive integer.")
+            return
+            
+        numbers = []
+        for i in range(1, n + 1):
+            val = float(input(f"Enter number {i}: "))
+            # Convert to int if it's a whole number for cleaner output matching the example
+            if val.is_integer():
+                val = int(val)
+            numbers.append(val)
+            
+        # Calculate statistics
+        total = calculate_sum(numbers)
+        average = calculate_average(numbers)
+        maximum = find_maximum(numbers)
+        minimum = find_minimum(numbers)
+        
+        # Display results
+        print("\nResults:")
+        print(f"Sum:     {total}")
+        print(f"Average: {average}")
+        print(f"Maximum: {maximum}")
+        print(f"Minimum: {minimum}")
+        
+    except ValueError:
+        print("Error: Please enter valid numerical values.")
+
+if __name__ == "__main__":
+    main()
